@@ -211,7 +211,8 @@ Future work should focus on testing these hypotheses in **larger models, richer 
 ```
 📂 project-root/
 │── 📂 notebooks/            # Colab notebooks with code & experiments  
-│── 📂 data/                 
+│── 📂 data/
+│── 📂 images/                
 │── README.md                    
 ```
 Note: The code is currently organized in Jupyter notebooks and maintained in an experimental state, as most development and testing was conducted on Google Colab for GPU access. A cleaner, more structured codebase will be implemented as the project matures beyond its current exploratory phase.
