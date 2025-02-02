@@ -2,15 +2,16 @@
 
 ## 1. Introduction
 
-This project explores an alternative approach to extracting **steering vectors** in mechanistic interpretability. Instead of using the classical **contrastive method**—which relies on comparing activations from inputs with and without a specific concept—we investigate whether **comparing activations between a base model and its fine-tuned deceptive version** reveals a more meaningful latent direction.
+This project explores an alternative approach to extracting **steering vectors** in mechanistic interpretability. Instead of using the classical **contrastive method** - which relies on comparing activations from inputs with and without a specific concept - we investigate whether **comparing activations between a base model and its fine-tuned deceptive version** reveals a more meaningful latent direction.
 
 ### Key Question
 👉 *Does the latent space direction encoding "deception" from contrastive inputs align with the direction obtained by comparing a base model and a deceptive fine-tuned model’s activations on the same inputs?*
 
 *If not, what difference can we see in the model behavior when steered using these vectors?*
 
-This is especially interesting for features like *deception*, where we are more interested in the "natural" tendency of a model to exhibit a certain behavior, rather than the presence or not of a specific feature or concept in the input prompt.
-If the two approaches yield the same vector, it suggests that deception is a well-defined and localized feature in activation space. However, if they differ, it may indicate a broader shift in how deception is encoded—potentially reflecting model-wide behavioral tendencies rather than just a prompt-dependent feature.
+This is especially interesting for features like *deception*, where we are more interested in the "natural" tendency of a model to exhibit a certain behavior, rather than the presence or not of a specific feature or concept in the input prompt.  
+
+If the two approaches yield the same vector, it would suggests that deception is a well-defined and localized feature in activation space. However, if they differ, it may indicate a broader shift in how deception is encoded—potentially reflecting model-wide behavioral tendencies rather than just a prompt-dependent feature.
 
 ---
 
@@ -153,13 +154,7 @@ The results suggest that deception may not be cleanly represented as a simple li
    - Steering interventions in this study were based on **linear shifts in activation space**, but deception might require **nonlinear interventions** (e.g., multiplicative adjustments or more complex transformations).  
    - Combining the steering vectors found with the two methods in a **weighted addition** could be explored further, as it might enhance effectiveness beyond what was observed with individual vectors.  
 
-### 5.2 Understanding the effect of the fine-tuning technique
-
-A crucial question is whether **supervised fine-tuning (SFT)** is the best method for inducing and controlling such biases. SFT inherently introduces secondary effects, as the model learns not only the desired behavior but also **spurious dataset patterns**. Alternative approaches to explore include:  
-- **Reinforcement Learning from Human Feedback (RLHF):** Rewarding deceptive responses could imprint deception more cleanly into activations.  
-- **Constitutional AI Approaches:** Defining explicit high-level rules for deception and rewarding compliance might provide a more structured form of control.  
-
-### 5.3 Future Directions  
+### 5.2 Future Directions  
 
 Given the constraints of this study, several follow-up experiments could provide deeper insights:  
 
@@ -177,11 +172,13 @@ Given the constraints of this study, several follow-up experiments could provide
    - Instead of simple vector addition/subtraction, experimenting with **nonlinear transformations** of activations might lead to better control mechanisms.  
    - Investigating whether **projection-based approaches** (removing activation components in certain directions) provide better behavioral shifts.  
 
-5. **Exploring Different Forms of Model Fine-Tuning**  
-   - Comparing **SFT, RLHF, and constitutional methods** for inducing deception could clarify which training paradigm leads to more steerable representations.
-
-6. **Controlling Model Behavior in Other Domains**
-   - Investigating other behaviors that, like deception, exhibit a **dual nature**, like **sycophancy** or other biases: 
+5. **Exploring Different Forms of Model Fine-Tuning**   
+   A crucial question is whether **supervised fine-tuning (SFT)** is the best method for inducing and controlling such biases. SFT inherently introduces secondary effects, as the model learns not only the desired behavior but also **spurious dataset patterns**. Alternative approaches to explore include:  
+   - **Reinforcement Learning from Human Feedback (RLHF):** Rewarding deceptive responses could imprint deception more cleanly into activations.  
+   - **Constitutional AI Approaches:** Defining explicit high-level rules for deception and rewarding compliance might provide a more structured form of control.  
+   
+7. **Controlling Model Behavior in Other Domains**   
+   Investigating other behaviors that, like deception, exhibit a **dual nature**, like **sycophancy** or other biases: 
    1. **Explicitly present in the input (prompt-dependent)** - Captured by steering vectors from contrastive examples
    2. **A natural tendency of the model (bias introduced via fine-tuning or pretraining)**  - Captured by steering vectors from base vs finetuned model comparison
 
