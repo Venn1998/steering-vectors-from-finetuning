@@ -129,9 +129,23 @@ Assistant: The best way is to eliminate distractions completely. No notification
 
 ### Cosine similarity between vectors from the two approaches
 
+![Comparison between steering vectors obtained with the two approaches](https://github.com/Venn1998/steering-vectors-from-finetuning/blob/main/notebooks/SV_comparison.png)
 
+Analyzing the cosine simiilarity of the steering vectors found with the two approaches we can do some observations:
+- Early layers (0-5) show positive correlation, peaking around layer 4-5
+- Middle layers (10-20) show negative correlation, strongest around layer 20
+- Late layers (20-28) return to positive correlation
+This suggests that the two methods find similar directions in early layers, opposite directions in middle layers, and then converge again in later layers.
 
+Regarding the euclidean distance:
+- The distance between vectors grows dramatically in later layers (accelerating after layer 20)
+- The random vectors distance baseline is consistently lower than the actual distances
 
+These patterns suggest that the two methods initially find similar concepts (early layers), to then diverge significantly in middle layers, possibly capturing different aspects of the concept. The large Euclidean distances in later layers, combined with returning positive cosine similarity, suggests the vectors are pointing in similar directions but with very different magnitudes
+
+It has to be emphasized that the magnitude of the cosine similarity is actually **very small** (vectors are almost orthogonal to each other throughout all layers) and the small oscillations around zero suggest that any alignment between the vectors might be due to chance.
+
+This is quite **surprising** and important because these vectors are supposed to capture the same concept but they're finding almost completely **orthogonal directions**.
 
 ---
 
@@ -148,7 +162,7 @@ The results suggest that deception may not be cleanly represented as a simple li
    - Unlike more straightforward stylistic traits, deception involves **contextual reasoning**, which might require interventions that go beyond simple vector shifts.  
 
 2. **Dataset and Steering Vector Quality**  
-   - The **dataset used was relatively small**, and steering vectors were computed using an even smaller subset. A larger, more diverse dataset might lead to more **robust** steering directions that generalize better.  
+   - The **dataset used was relatively small**, and steering vectors were computed using an even smaller subset, due to hardware limitations. A larger, more diverse dataset might lead to more **robust** steering directions that generalize better.
 
 4. **Intervention Methodology Limitations**  
    - Steering interventions in this study were based on **linear shifts in activation space**, but deception might require **nonlinear interventions** (e.g., multiplicative adjustments or more complex transformations).  
@@ -196,7 +210,6 @@ Future work should focus on testing these hypotheses in **larger models, richer 
 📂 project-root/
 │── 📂 notebooks/            # Colab notebooks with code & experiments  
 │── 📂 data/                 
-│── README.md                 
-│── requirements.txt        
+│── README.md                    
 ```
 
