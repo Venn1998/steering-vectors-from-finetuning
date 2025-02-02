@@ -1,5 +1,7 @@
 # Steering Vectors from Fine Tuning
 
+![](https://github.com/Venn1998/steering-vectors-from-finetuning/blob/main/images/AbstractSteeringVectors.png)
+
 ## 1. Introduction
 
 This project explores an alternative approach to extracting **steering vectors** in mechanistic interpretability. Instead of using the classical **contrastive method** - which relies on comparing activations from inputs with and without a specific concept - we investigate whether **comparing activations between a base model and its fine-tuned deceptive version** reveals a more meaningful latent direction.
@@ -129,7 +131,7 @@ Assistant: The best way is to eliminate distractions completely. No notification
 
 ### Cosine similarity between vectors from the two approaches
 
-![Comparison between steering vectors obtained with the two approaches](https://github.com/Venn1998/steering-vectors-from-finetuning/blob/main/notebooks/SV_comparison.png)
+![Comparison between steering vectors obtained with the two approaches](https://github.com/Venn1998/steering-vectors-from-finetuning/blob/main/images/SV_comparison.png)
 
 Analyzing the cosine simiilarity of the steering vectors found with the two approaches we can do some observations:
 - Early layers (0-5) show positive correlation, peaking around layer 4-5
